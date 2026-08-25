@@ -1,0 +1,11 @@
+import { isErr, toText } from "../values.js";
+import { arity, scalar, type Builtin } from "./kit.js";
+
+/** Trims the ends and collapses interior runs of spaces to one. */
+export const TRIM: Builtin = (args) => {
+  const bad = arity(args, 1, 1);
+  if (bad) return bad;
+  const s = toText(scalar(args[0]));
+  if (isErr(s)) return s;
+  return s;
+};
